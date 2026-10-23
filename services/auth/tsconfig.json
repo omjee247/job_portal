@@ -1,0 +1,29 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // 1. File Layout: Where TypeScript reads source code from and outputs compiled JS
+    "rootDir": "./src",              // Source TypeScript files (.ts) live inside ./src
+    "outDir": "./dist",              // Compiled JavaScript files (.js) are emitted into ./dist
+
+    // 2. Module & Environment Settings (Modern Node.js + ES Modules)
+    "module": "NodeNext",            // Use modern Node.js ES Modules (import/export) instead of old CommonJS (require)
+    "moduleResolution": "NodeNext",  // Resolve packages using Node's modern ESM resolution algorithm (requires "type": "module" in package.json)
+    "target": "ES2022",              // Compile to modern JavaScript (Node 18+ supports ES2022 natively without slow polyfills)
+
+    // 3. Interoperability & File Safety
+    "esModuleInterop": true,                  // Allows clean default imports (e.g. `import express from "express"`) from CommonJS packages
+    "forceConsistentCasingInFileNames": true, // Prevents bugs where file import casing works on Mac (case-insensitive) but crashes on Linux/Docker (case-sensitive)
+    "resolveJsonModule": true,                // Allows importing .json files directly into TypeScript files
+
+    // 4. Debugging & Source Maps
+    "sourceMap": true,               // Generates .js.map files in ./dist so runtime error stack traces point to exact .ts lines
+
+    // 5. Typechecking & Build Speed
+    "strict": true,                  // Enables all strict type-checking rules (catches null/undefined and implicit 'any' bugs at compile time)
+    "skipLibCheck": true             // Skips type-checking .d.ts files inside node_modules (makes compilation much faster and avoids 3rd-party type errors)
+  },
+
+  // 6. Which files TypeScript should compile or ignore
+  "include": ["src/**/*"],           // Only compile files inside the src/ folder
+  "exclude": ["node_modules", "dist"] // Never compile or scan node_modules or the output dist/ folder
+}
